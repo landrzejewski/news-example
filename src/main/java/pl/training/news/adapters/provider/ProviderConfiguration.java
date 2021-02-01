@@ -8,7 +8,7 @@ import org.springframework.web.client.RestTemplate;
 class ProviderConfiguration {
 
     @Bean
-    public RestTemplate restTemplate() {
+    RestTemplate restTemplate() {
         return new RestTemplate();
     }
 

@@ -16,7 +16,7 @@ class KafkaEventEmitter implements EventEmitter<NewsRequestEvent> {
     private final KafkaTemplate<String, Event> kafkaTemplate;
     private final String topic;
 
-    public KafkaEventEmitter(KafkaTemplate<String, Event> kafkaTemplate, @Value("${kafka.topic}") String topic) {
+    KafkaEventEmitter(KafkaTemplate<String, Event> kafkaTemplate, @Value("${kafka.topic}") String topic) {
         this.kafkaTemplate = kafkaTemplate;
         this.topic = topic;
     }

@@ -22,7 +22,7 @@ import java.util.HashMap;
 class BrokerConfiguration {
 
     @Bean
-    public ConsumerFactory<String, Event> consumerFactory(@Value("${kafka.server}") String server,
+    ConsumerFactory<String, Event> consumerFactory(@Value("${kafka.server}") String server,
                                                           @Value("${kafka.group}") String group) {
         var properties = new HashMap<String, Object>();
         properties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, server);
@@ -33,14 +33,14 @@ class BrokerConfiguration {
     }
 
     @Bean
-    public KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<String, Event>> containerFactory(ConsumerFactory<String, Event> consumerFactory) {
+    KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<String, Event>> containerFactory(ConsumerFactory<String, Event> consumerFactory) {
         var containerFactory = new ConcurrentKafkaListenerContainerFactory<String, Event>();
         containerFactory.setConsumerFactory(consumerFactory);
         return containerFactory;
     }
 
     @Bean
-    public ProducerFactory<String, Event> producerFactory(@Value("${kafka.server}") String server) {
+    ProducerFactory<String, Event> producerFactory(@Value("${kafka.server}") String server) {
         var properties = new HashMap<String, Object>();
         properties.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, server);
         properties.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
@@ -49,12 +49,12 @@ class BrokerConfiguration {
     }
 
     @Bean
-    public NewTopic trainingTopic(@Value("${kafka.topic}") String topicName) {
+    NewTopic trainingTopic(@Value("${kafka.topic}") String topicName) {
         return TopicBuilder.name(topicName).build();
     }
 
     @Bean
-    public KafkaTemplate<String, Event> stringStringKafkaTemplate(ProducerFactory<String, Event> producerFactory) {
+    KafkaTemplate<String, Event> stringStringKafkaTemplate(ProducerFactory<String, Event> producerFactory) {
         return new KafkaTemplate<>(producerFactory);
     }
 
