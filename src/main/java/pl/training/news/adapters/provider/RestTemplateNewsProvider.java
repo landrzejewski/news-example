@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class RestTemplateNewsProvider implements NewsProvider {
+class RestTemplateNewsProvider implements NewsProvider {
 
     private final RestTemplate restTemplate;
     private final ProviderMapper providerMapper;

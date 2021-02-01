@@ -1,4 +1,4 @@
-package pl.training.news.adapters.api;
+package pl.training.news.adapters.rest;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;

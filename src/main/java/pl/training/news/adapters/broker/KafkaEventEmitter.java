@@ -22,9 +22,10 @@ class KafkaEventEmitter implements EventEmitter<NewsRequestEvent> {
     }
 
     @Override
-    public void emit(NewsRequestEvent event) {
-        log.info("Sending message");
-        kafkaTemplate.send(topic, new Event(EVENT_NAME, event.getTimestamp()));
+    public void emit(NewsRequestEvent newsRequestEvent) {
+        var event = new Event(EVENT_NAME, newsRequestEvent.getTimestamp());
+        log.info("Sending event: " + event);
+        kafkaTemplate.send(topic, event);
     }
 
 }

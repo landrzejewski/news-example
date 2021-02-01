@@ -4,3 +4,4 @@ newsApi:
 kafka:
   server: localhost:9092
   topic: news
+  group: g1

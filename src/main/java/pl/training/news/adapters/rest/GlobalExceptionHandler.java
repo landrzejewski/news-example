@@ -1,4 +1,4 @@
-package pl.training.news.adapters.api;
+package pl.training.news.adapters.rest;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
@@ -15,7 +15,7 @@ import java.util.Locale;
 
 import static org.springframework.http.HttpStatus.*;
 
-@ControllerAdvice(basePackages = "pl.training.news.adapters.api")
+@ControllerAdvice(basePackages = "pl.training.news.adapters.rest")
 @Log
 @RequiredArgsConstructor
 final class GlobalExceptionHandler {
