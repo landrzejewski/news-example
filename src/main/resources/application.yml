@@ -1,3 +1,6 @@
 newsApi:
   url: https://newsapi.org/v2/top-headlines?country=%s&category=%s&apiKey=%s
   key: 8011efe093ae47b294b2d0dec05ba518
+kafka:
+  server: localhost:9092
+  topic: news
