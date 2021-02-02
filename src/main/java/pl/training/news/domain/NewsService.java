@@ -8,14 +8,17 @@ import static lombok.AccessLevel.PACKAGE;
 public class NewsService {
 
     private final NewsProvider newsProvider;
+    private final ArticlesRepository articlesRepository;
     private final EventEmitter<NewsRequestEvent> eventEmitter;
     private final CountriesService countriesService;
 
     public News getNews(String country, String category) {
         countriesService.validate(country);
         eventEmitter.emit(new NewsRequestEvent());
-        return newsProvider.getNews(country, category)
+        var news = newsProvider.getNews(country, category)
                 .orElseThrow(NewsLoadingException::new);
+        articlesRepository.saveAll(news.getArticles());
+        return news;
     }
 
 }

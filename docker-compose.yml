@@ -1,0 +1,26 @@
+version: '3'
+services:
+  zookeeper:
+    image: wurstmeister/zookeeper
+    restart: always
+    ports:
+      - 2181:2181
+  kafka:
+    image: wurstmeister/kafka
+    restart: always
+    depends_on:
+      - zookeeper
+    ports:
+      - 9092:9092
+    environment:
+      KAFKA_ADVERTISED_HOST_NAME: localhost
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+  orientdb:
+    image: orientdb
+    ports:
+      - 2424:2424
+      - 2480:2480
+    environment:
+      - ORIENTDB_ROOT_PASSWORD=root
+
+

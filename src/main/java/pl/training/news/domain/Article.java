@@ -12,5 +12,6 @@ public class Article {
     private String description;
     private LocalDate publicationDate;
     private String url;
+    private String source;
 
 }

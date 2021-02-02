@@ -12,6 +12,7 @@ import java.util.List;
 abstract class ProviderMapper {
 
     @Mapping(source = "publishedAt", target = "publicationDate")
+    @Mapping(source = "source.name", target = "source")
     abstract Article toArticle(ArticleDto articleDto);
 
     abstract List<Article> toArticles(List<ArticleDto> articleDtos);

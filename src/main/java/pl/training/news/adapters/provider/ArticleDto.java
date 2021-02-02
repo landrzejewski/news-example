@@ -13,5 +13,6 @@ final class ArticleDto {
     String description;
     Date publishedAt;
     String url;
+    SourceDto source;
 
 }

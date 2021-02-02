@@ -1,2 +1,17 @@
 GET http://localhost:8080/news/pl/business
 Accept: application/json
+
+###
+
+POST http://localhost:2480/function/training/createCars/3
+Authorization: Basic cm9vdDpyb290
+
+###
+
+GET http://localhost:2480/class/training/Car
+
+###
+
+POST http://localhost:2480/command/training/sql
+
+select from Car

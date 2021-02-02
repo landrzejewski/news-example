@@ -2,8 +2,8 @@ package pl.training.news.domain;
 
 public class NewsServiceFactory {
 
-    public NewsService create(NewsProvider newsProvider, EventEmitter<NewsRequestEvent> eventEmitter) {
-        return new NewsService(newsProvider, eventEmitter, new CountriesService());
+    public NewsService create(NewsProvider newsProvider, ArticlesRepository articlesRepository, EventEmitter<NewsRequestEvent> eventEmitter) {
+        return new NewsService(newsProvider, articlesRepository, eventEmitter, new CountriesService());
     }
 
 }

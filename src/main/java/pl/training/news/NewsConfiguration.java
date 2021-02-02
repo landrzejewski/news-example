@@ -8,8 +8,8 @@ import pl.training.news.domain.*;
 class NewsConfiguration {
 
     @Bean
-    public NewsService newsService(NewsProvider newsProvider, EventEmitter<NewsRequestEvent> eventEmitter) {
-        return new NewsServiceFactory().create(newsProvider, eventEmitter);
+    public NewsService newsService(NewsProvider newsProvider, ArticlesRepository articlesRepository, EventEmitter<NewsRequestEvent> eventEmitter) {
+        return new NewsServiceFactory().create(newsProvider, articlesRepository, eventEmitter);
     }
 
 }
