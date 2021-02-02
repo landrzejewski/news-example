@@ -5,6 +5,7 @@ import com.orientechnologies.orient.core.db.OrientDB;
 import com.orientechnologies.orient.core.metadata.schema.OType;
 import com.orientechnologies.orient.core.record.ODirection;
 import com.orientechnologies.orient.core.record.OVertex;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import pl.training.news.domain.Article;
 import pl.training.news.domain.ArticlesRepository;
@@ -24,9 +25,18 @@ class OrientDbArticlesRepository implements ArticlesRepository {
     private static final String PUBLISHED_CLASS_NAME  = "Published";
 
     private final OrientDB database;
+    private final String training;
+    private final String user;
+    private final String password;
 
-    public OrientDbArticlesRepository(OrientDB database) {
+    public OrientDbArticlesRepository(OrientDB database,
+                                      @Value("${orientdb.database}") String training,
+                                      @Value("${orientdb.user}") String user,
+                                      @Value("${orientdb.password}") String password) {
         this.database = database;
+        this.training = training;
+        this.user = user;
+        this.password = password;
         var session = getSession();
         if (session.getClass(SOURCE_CLASS_NAME) == null) {
             var person = session.createVertexClass(SOURCE_CLASS_NAME);
@@ -43,7 +53,7 @@ class OrientDbArticlesRepository implements ArticlesRepository {
     }
 
     private ODatabaseSession getSession() {
-        return database.open("training", "root", "root");
+        return database.open(training, user, password);
     }
 
     @Override
